@@ -277,7 +277,7 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
     if (!validate()) return
 
     // Get the url without query parameters.
-    const redirectUrl = window.location.toString().replace(window.location.search, '')
+    const redirectUrl = window.location.toString().replace(window.location.search, '/studio')
     if (type === 'email')
       AuthService.createMagicLink(emailPhone.value, authState?.value, 'email', redirectUrl).then(() =>
         logger.info({
@@ -502,7 +502,7 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
                       disabled={hasAcceptedTermsAndAge}
                       value={checkedTOS.value}
                       onChange={(e) => checkedTOS.set(e.target.checked)}
-                      color="primary"
+                      color="success"
                       name="isAgreedTermsOfService"
                     />
                   }
@@ -510,7 +510,8 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
                     <div
                       className={styles.termsLink}
                       style={{
-                        fontStyle: 'italic'
+                        fontStyle: 'italic',
+                        color: 'var(--textColor)'
                       }}
                     >
                       {t('user:usermenu.profile.agreeTOS')}
@@ -534,14 +535,15 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
                       disabled={hasAcceptedTermsAndAge}
                       value={checked13OrOver.value}
                       onChange={(e) => checked13OrOver.set(e.target.checked)}
-                      color="primary"
+                      color="success"
                       name="is13OrOver"
                     />
                   }
                   label={
                     <div
                       style={{
-                        fontStyle: 'italic'
+                        fontStyle: 'italic',
+                        color: 'var(--textColor)'
                       }}
                       className={styles.termsLink}
                     >
@@ -560,14 +562,15 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
                       disabled={checked18OrOver.value}
                       value={checked18OrOver.value}
                       onChange={(e) => checked18OrOver.set(e.target.checked)}
-                      color="primary"
-                      name="is13OrOver"
+                      color="success"
+                      name="is18OrOver"
                     />
                   }
                   label={
                     <div
                       style={{
-                        fontStyle: 'italic'
+                        fontStyle: 'italic',
+                        color: 'var(--textColor)'
                       }}
                       className={styles.termsLink}
                     >
