@@ -277,15 +277,15 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
     if (!validate()) return
 
     // Get the url without query parameters.
-    const redirectUrl = window.location.toString().replace(window.location.search, '/studio')
-    if (type === 'email')
+    const redirectUrl = `${window.location.toString()}studio`
+    if (type === 'email') {
       AuthService.createMagicLink(emailPhone.value, authState?.value, 'email', redirectUrl).then(() =>
         logger.info({
           event_name: 'connect_email',
           event_value: e.currentTarget.id
         })
       )
-    else if (type === 'sms')
+    } else if (type === 'sms')
       AuthService.createMagicLink(emailPhone.value, authState?.value, 'sms', redirectUrl).then(() =>
         logger.info({
           event_name: 'connect_sms',
