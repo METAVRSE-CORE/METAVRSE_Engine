@@ -23,10 +23,16 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
-import { CheckboxProps, Checkbox as MuiCheckbox } from '@mui/material'
+import { CheckboxProps, Checkbox as MuiCheckbox, styled } from '@mui/material'
 import React from 'react'
 
-const Checkbox = (props: CheckboxProps) => <MuiCheckbox {...props} />
+const StyledCheckbox = styled(MuiCheckbox)(({ theme }) => ({
+  '&.Mui-disabled': {
+    color: 'var(--green)'
+  }
+}))
+
+const Checkbox = (props: CheckboxProps) => <StyledCheckbox {...props} />
 
 Checkbox.displayName = 'Checkbox'
 
