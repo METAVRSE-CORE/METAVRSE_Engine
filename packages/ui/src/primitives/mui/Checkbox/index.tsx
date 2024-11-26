@@ -27,6 +27,7 @@ import { CheckboxProps, Checkbox as MuiCheckbox, styled } from '@mui/material'
 import React from 'react'
 
 const StyledCheckbox = styled(MuiCheckbox)(({ theme }) => ({
+  color: 'var(--gray)',
   '&.Mui-disabled': {
     color: 'var(--green)'
   }
