@@ -22,3 +22,54 @@ Original Code is the Infinite Reality Engine team.
 All portions of the code written by the Infinite Reality Engine team are Copyright © 2021-2023 
 Infinite Reality Engine. All Rights Reserved.
 */
+
+import React, { lazy } from 'react'
+import { HiOutlineCube } from 'react-icons/hi'
+import { HiChatBubbleOvalLeftEllipsis, HiHome, HiMapPin, HiMiniCamera } from 'react-icons/hi2'
+import { UserRouteStateType } from './AllowedUserRoutesState'
+
+const StudioPage = lazy(() => import('../../../client/src/pages/editor'))
+
+const LocationPage = lazy(() => import('../../../client/src/pages/location/location'))
+
+const ChatPage = lazy(() => import('../../../client/src/pages/chat/chat'))
+
+const CapturePage = lazy(() => import('../../../client/src/pages/capture'))
+
+export const DefaultUserRoutes: Record<string, UserRouteStateType> = {
+  home: {
+    name: 'Home',
+    scope: 'editor',
+    component: StudioPage,
+    access: false,
+    icon: <HiHome />
+  },
+  studio: {
+    name: 'Editor',
+    scope: 'editor',
+    component: StudioPage,
+    access: false,
+    icon: <HiOutlineCube />
+  },
+  location: {
+    name: 'Locations',
+    scope: 'location',
+    component: LocationPage,
+    access: false,
+    icon: <HiMapPin />
+  },
+  chat: {
+    name: 'Chat',
+    scope: 'routes',
+    component: ChatPage,
+    access: false,
+    icon: <HiChatBubbleOvalLeftEllipsis />
+  },
+  capture: {
+    name: 'Capture',
+    scope: 'routes',
+    component: CapturePage,
+    access: false,
+    icon: <HiMiniCamera />
+  }
+}
