@@ -23,61 +23,23 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
-import React from 'react'
+import Debug from '@ir-engine/client-core/src/components/Debug'
+import DashboardRoutes from '@ir-engine/client-core/src/dashboard/dashboardRoutes'
+import LoadingView from '@ir-engine/ui/src/primitives/tailwind/LoadingView'
+import { t } from 'i18next'
+import React, { Suspense } from 'react'
 
-import { ThemeState } from '@ir-engine/client-core/src/common/services/ThemeService'
-import { getMutableState, getState, useHookstate } from '@ir-engine/hyperflux'
-
-import { AuthService, AuthState } from '@ir-engine/client-core/src/user/services/AuthService'
-
-import '@ir-engine/engine/src/EngineModule'
-
-import { useTranslation } from 'react-i18next'
-import { HiMiniMoon, HiMiniSun } from 'react-icons/hi2'
-
-import Button from '@ir-engine/ui/src/primitives/tailwind/Button'
-
-import { useFind } from '@ir-engine/common'
-import { identityProviderPath } from '@ir-engine/common/src/schema.type.module'
-import Tooltip from '@ir-engine/ui/src/primitives/tailwind/Tooltip'
-
-const DashboardTopBar = () => {
-  const { t } = useTranslation()
-  const theme = useHookstate(getMutableState(ThemeState)).theme
-  const identityProvidersQuery = useFind(identityProviderPath)
-  const selfUser = getState(AuthState).user
-  const tooltip = `${selfUser.name} (${identityProvidersQuery.data
-    .map((item) => `${item.type}: ${item.accountIdentifier}`)
-    .join(', ')}) ${selfUser.id}`
-
-  const toggleTheme = () => {
-    const currentTheme = getState(ThemeState).theme
-    ThemeState.setTheme(currentTheme === 'dark' ? 'light' : 'dark')
-  }
-
+const Dashboard = () => {
   return (
-    <div className="flex h-16 w-full items-center justify-between bg-theme-surface-main px-8 py-4">
-      <img src="static/ir.svg" alt="iR Engine Logo" className={`h-7 w-7${theme.value === 'light' ? ' invert' : ''}`} />
-      <div className="flex gap-4">
-        <Button onClick={toggleTheme} className="pointer-events-auto bg-transparent p-0">
-          {theme.value === 'light' ? (
-            <HiMiniMoon className="text-theme-primary" size="1.5rem" />
-          ) : (
-            <HiMiniSun className="text-theme-primary" size="1.5rem" />
-          )}
-        </Button>
-        <Tooltip content={tooltip}>
-          <Button className="pointer-events-auto" size="small" onClick={() => AuthService.logoutUser()}>
-            {t('admin:components.common.logOut')}
-          </Button>
-        </Tooltip>
-      </div>
-    </div>
+    <>
+      <Suspense
+        fallback={<LoadingView fullScreen className="block h-12 w-12" title={t('common:loader.loadingLocation')} />}
+      >
+        <DashboardRoutes />
+      </Suspense>
+      <Debug />
+    </>
   )
 }
 
-const DashboardRoutes = () => {
-  return <DashboardTopBar />
-}
-
-export default DashboardRoutes
+export default Dashboard
