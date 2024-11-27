@@ -277,7 +277,7 @@ const ProfileMenu = ({ hideLogin, onClose, isPopover }: Props): JSX.Element => {
     if (!validate()) return
 
     // Get the url without query parameters.
-    const redirectUrl = `${window.location.toString()}studio`
+    const redirectUrl = `${window.location.toString()}dashboard`
     if (type === 'email') {
       AuthService.createMagicLink(emailPhone.value, authState?.value, 'email', redirectUrl).then(() =>
         logger.info({
