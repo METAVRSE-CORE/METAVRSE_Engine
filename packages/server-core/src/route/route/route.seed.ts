@@ -50,6 +50,10 @@ export async function seed(knex: Knex): Promise<void> {
       },
       {
         project: 'ir-engine/default-project',
+        route: '/dashboard'
+      },
+      {
+        project: 'ir-engine/default-project',
         route: '/studio'
       },
       {
