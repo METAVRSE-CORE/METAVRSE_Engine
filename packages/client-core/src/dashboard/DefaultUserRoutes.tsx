@@ -40,6 +40,7 @@ export const DefaultUserRoutes: Record<string, UserRouteStateType> = {
   home: {
     name: 'Home',
     scope: 'editor',
+    redirect: '/dashboard',
     component: StudioPage,
     access: false,
     icon: <HiHome />
@@ -47,6 +48,7 @@ export const DefaultUserRoutes: Record<string, UserRouteStateType> = {
   studio: {
     name: 'Editor',
     scope: 'editor',
+    redirect: '/studio',
     component: StudioPage,
     access: false,
     icon: <HiOutlineCube />
@@ -54,6 +56,7 @@ export const DefaultUserRoutes: Record<string, UserRouteStateType> = {
   location: {
     name: 'Locations',
     scope: 'location',
+    redirect: '/locations',
     component: LocationPage,
     access: false,
     icon: <HiMapPin />
@@ -61,6 +64,7 @@ export const DefaultUserRoutes: Record<string, UserRouteStateType> = {
   chat: {
     name: 'Chat',
     scope: 'routes',
+    redirect: '/chat',
     component: ChatPage,
     access: false,
     icon: <HiChatBubbleOvalLeftEllipsis />
@@ -68,6 +72,7 @@ export const DefaultUserRoutes: Record<string, UserRouteStateType> = {
   capture: {
     name: 'Capture',
     scope: 'routes',
+    redirect: '/capture',
     component: CapturePage,
     access: false,
     icon: <HiMiniCamera />
