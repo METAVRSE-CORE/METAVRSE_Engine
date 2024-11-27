@@ -100,7 +100,7 @@ const DashboardSideBar = () => {
           .map(([path, sidebarItem], index) => {
             return (
               <li key={index}>
-                <Link to={path}>
+                <Link to={sidebarItem.redirect}>
                   <Button
                     className={`hover:bg-theme-highlight] flex w-72 items-center justify-start rounded-xl px-2 py-3 font-medium text-theme-secondary ${
                       relativePath === path
