@@ -41,6 +41,9 @@ const config: ProjectConfigInterface = {
     '/location': {
       component: () => import('@ir-engine/client/src/pages/location/location')
     },
+    '/dashboard': {
+      component: () => import('@ir-engine/client/src/pages/dashboard')
+    },
     '/studio': {
       component: () => import('@ir-engine/client/src/pages/editor')
     },
