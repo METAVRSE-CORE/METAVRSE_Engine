@@ -146,13 +146,13 @@
   }
 
   .main-section {
+    width: 35%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    max-width: 1024px;
-    margin: auto;
-    width: 100%;
+    justify-content: center;
     overflow-y: auto;
+    background-color: var(--popupBackground);
 
     .desc {
       font-size: 30px;
@@ -176,6 +176,35 @@
         flex-shrink: 0;
         margin-top: 100px;
       }
+    }
+
+    .userAuthContainer {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 20px;
+      padding-inline: 40px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    .buttonContainer {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .button {
+      width: 50%;
+      padding: 5px;
+      color: var(--white);
+      background-color: var(--bluePressed);
     }
   }
 }
