@@ -29,7 +29,7 @@ import React from 'react'
 const UserAuthMenu = () => {
   return (
     <div className="userAuthContainer">
-      <h1>Welcome to the METAVRSE Engine</h1>
+      <h1 className="title">Welcome to the METAVRSE Engine</h1>
 
       <div className="buttonContainer">
         <Button className="button">Sign in</Button>
