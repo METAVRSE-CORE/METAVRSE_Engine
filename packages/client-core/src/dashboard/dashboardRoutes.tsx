@@ -42,7 +42,6 @@ import PopupMenu from '@ir-engine/ui/src/primitives/tailwind/PopupMenu'
 
 import { useFind } from '@ir-engine/common'
 import { identityProviderPath, scopePath } from '@ir-engine/common/src/schema.type.module'
-import Tooltip from '@ir-engine/ui/src/primitives/tailwind/Tooltip'
 import { RouterState } from '../common/services/RouterService'
 import { DefaultUserRoutes } from './DefaultUserRoutes'
 
@@ -73,11 +72,9 @@ const DashboardTopBar = () => {
             <HiMiniSun className="text-theme-primary" size="1.5rem" />
           )}
         </Button>
-        <Tooltip content={tooltip}>
-          <Button className="pointer-events-auto" size="small" onClick={() => AuthService.logoutUser()}>
-            {t('admin:components.common.logOut')}
-          </Button>
-        </Tooltip>
+        <Button className="pointer-events-auto" size="small" onClick={() => AuthService.logoutUser()}>
+          {t('admin:components.common.logOut')}
+        </Button>
       </div>
     </div>
   )
