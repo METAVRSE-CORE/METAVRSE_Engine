@@ -24,21 +24,18 @@ Infinite Reality Engine. All Rights Reserved.
 */
 
 import React, { useEffect } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
 
-import styles from '@ir-engine/client-core/src/admin/old-styles/admin.module.scss'
 import { NotificationService } from '@ir-engine/client-core/src/common/services/NotificationService'
 
 import { PopupMenuState } from '@ir-engine/client-core/src/user/components/UserMenu/PopupMenuService'
 import config from '@ir-engine/common/src/config'
 import { getState, useMutableState } from '@ir-engine/hyperflux'
 
-import { Box, Button } from '@mui/material'
-
-import ProfileMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/ProfileMenu'
 import { UserMenus } from '@ir-engine/client-core/src/user/UserUISystem'
 
+import UserAuthMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserAuthMenu'
 import { useFind } from '@ir-engine/common'
 import { clientSettingPath } from '@ir-engine/common/src/schema.type.module'
 import './index.scss'
@@ -76,64 +73,10 @@ export const HomePage = (): any => {
             }
           `}
         </style>
-        <div className="main-background">
-          <div className="img-container">
-            {clientSetting?.appBackground && (
-              <img
-                style={{
-                  height: 'auto',
-                  maxWidth: '100%'
-                }}
-                src={clientSetting?.appBackground}
-                alt=""
-                crossOrigin="anonymous"
-              />
-            )}
-          </div>
-        </div>
-        <nav className="navbar">
-          <div className="logo-section">
-            {clientSetting?.appTitle && <object className="lander-logo" data={clientSetting?.appTitle} />}
-            <div className="logo-bottom">
-              {clientSetting?.appSubtitle && <span className="white-txt">{clientSetting?.appSubtitle}</span>}
-            </div>
-          </div>
-        </nav>
         <div className="main-section">
-          <div className="desc">
-            {clientSetting?.appDescription && (
-              <Trans t={t} i18nKey={clientSetting?.appDescription}>
-                <span>{clientSetting?.appDescription}</span>
-              </Trans>
-            )}
-            {Boolean(clientSetting?.homepageLinkButtonEnabled) && (
-              <Button
-                className={styles.gradientButton + ' ' + styles.forceVaporwave}
-                autoFocus
-                onClick={() => (window.location.href = clientSetting?.homepageLinkButtonRedirect)}
-              >
-                {clientSetting?.homepageLinkButtonText}
-              </Button>
-            )}
-          </div>
-          <Box sx={{ flex: 1 }}>
-            <style>
-              {`
-                [class*=menu] {
-                    position: unset;
-                    bottom: 0px;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    transform: none;
-                    pointer-events: auto;
-                }
-              `}
-            </style>
-            {Panel && <Panel {...popupMenu.params} isPopover />}
-            {/* {popupMenu.openMenu !== UserMenus.Profile && <ProfileMenu isPopover />} */}
-            <ProfileMenu isPopover />
-          </Box>
+          {/* {popupMenu.openMenu !== UserMenus.Profile && <ProfileMenu isPopover />} */}
+          {/* <ProfileMenu isPopover /> */}
+          <UserAuthMenu />
         </div>
         <div className="link-container">
           <div className="link-block">
