@@ -148,12 +148,12 @@ const DashboardRoutes = () => {
   useEffect(() => {
     if (scopeQuery.status !== 'success') return
 
-    if (!scopeQuery.data.find((scope) => scope.type === 'admin:admin')) {
+    if (!scopeQuery.data.find((scope) => scope.type === 'editor:write')) {
       RouterState.navigate('/', { redirectUrl: location.pathname })
     }
   }, [scopeQuery.data])
 
-  if (!scopeQuery.data.find((scope) => scope.type === 'admin:admin')) {
+  if (!scopeQuery.data.find((scope) => scope.type === 'editor:write')) {
     return <></>
   }
 
