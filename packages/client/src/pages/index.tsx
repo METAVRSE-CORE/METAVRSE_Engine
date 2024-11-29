@@ -35,6 +35,7 @@ import { getState, useMutableState } from '@ir-engine/hyperflux'
 
 import { UserMenus } from '@ir-engine/client-core/src/user/UserUISystem'
 
+import { RouterState } from '@ir-engine/client-core/src/common/services/RouterService'
 import UserAuthMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserAuthMenu'
 import UserSignInMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserSignInMenu'
 import UserSignUpMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserSignUpMenu'
@@ -53,6 +54,14 @@ export const HomePage = (): any => {
   const Panel = popupMenu.openMenu ? popupMenu.menus[popupMenu.openMenu] : null
   const [selectedAuthRoute, setSelectedAuthRoute] = useState<string>('')
 
+  useEffect(() => {
+    console.log('Client Setting Query:', clientSettingQuery)
+    console.log('Client Setting:', clientSetting)
+  }, [clientSetting])
+
+  const routeHome = () => {
+    RouterState.navigate('/')
+  }
   const handlePopState = () => {
     window.history.pushState({}, '', '/')
     setSelectedAuthRoute('')
@@ -105,6 +114,7 @@ export const HomePage = (): any => {
         <div className="main-section">
           {/* {popupMenu.openMenu !== UserMenus.Profile && <ProfileMenu isPopover />} */}
           {/* <ProfileMenu isPopover /> */}
+          <img src={clientSetting?.appTitle} onClick={routeHome} className="w-1/4" />
           {renderUserMenu()}
         </div>
         <div className="link-container">
