@@ -41,7 +41,7 @@ export const clientSettingSeedData = {
   shortTitle: process.env.APP_TITLE || '',
   startPath: '/',
   releaseName: process.env.RELEASE_NAME || 'local',
-  siteDescription: process.env.SITE_DESC || 'IR Engine',
+  siteDescription: process.env.SITE_DESC || 'METAVRSE Engine',
   url:
     process.env.APP_URL ||
     (process.env.VITE_LOCAL_BUILD
@@ -56,9 +56,9 @@ export const clientSettingSeedData = {
   safariPinnedTab: '/safari-pinned-tab.svg',
   favicon: '/favicon.ico',
   appBackground: 'static/main-background.png',
-  appTitle: 'static/ir-logo.svg',
-  appSubtitle: 'IR Engine',
-  appDescription: 'FREE, OPEN, & INTEROPERABLE IMMERSIVE WEB TECHNOLOGY',
+  appTitle: 'static/lightMetaVrse.png',
+  appSubtitle: 'METAVRSE Engine',
+  appDescription: 'The METAVRSE Engine',
   gaMeasurementId: process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID || '',
   gtmContainerId: process.env.GOOGLE_TAG_MANAGER_CONTAINER_ID || '',
   gtmAuth: process.env.GOOGLE_TAG_MANAGER_AUTH || '',
