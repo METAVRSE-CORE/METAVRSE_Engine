@@ -23,7 +23,7 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
 
@@ -49,10 +49,37 @@ export const HomePage = (): any => {
   const popupMenuState = useMutableState(PopupMenuState)
   const popupMenu = getState(PopupMenuState)
   const Panel = popupMenu.openMenu ? popupMenu.menus[popupMenu.openMenu] : null
+  const [selectedAuthRoute, setSelectedAuthRoute] = useState<string>('')
+
+  const handlePopState = () => {
+    window.history.pushState({}, '', '/')
+    setSelectedAuthRoute('')
+  }
+
+  const renderUserMenu = () => {
+    switch (selectedAuthRoute) {
+      case '':
+        return <UserAuthMenu handleClick={setSelectedAuthRoute} />
+      case 'signin':
+        return <>Sign In Selected</>
+      case 'signup':
+        return <>Sign Up Selected</>
+      default:
+        return <UserAuthMenu handleClick={setSelectedAuthRoute} />
+    }
+  }
 
   useEffect(() => {
     const error = new URL(window.location.href).searchParams.get('error')
     if (error) NotificationService.dispatchNotify(error, { variant: 'error' })
+
+    // Checking if "back" button is clicked
+    window.addEventListener('popstate', handlePopState)
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
   }, [])
 
   useEffect(() => {
@@ -76,7 +103,7 @@ export const HomePage = (): any => {
         <div className="main-section">
           {/* {popupMenu.openMenu !== UserMenus.Profile && <ProfileMenu isPopover />} */}
           {/* <ProfileMenu isPopover /> */}
-          <UserAuthMenu />
+          {renderUserMenu()}
         </div>
         <div className="link-container">
           <div className="link-block">
