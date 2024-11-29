@@ -35,12 +35,6 @@ const config: ProjectConfigInterface = {
         exact: true
       }
     },
-    '/signin': {
-      component: () => import('@ir-engine/client/src/pages/signin')
-    },
-    '/signup': {
-      component: () => import('@ir-engine/client/src/pages/signup')
-    },
     '/admin': {
       component: () => import('@ir-engine/client/src/pages/admin')
     },
