@@ -25,14 +25,32 @@ Infinite Reality Engine. All Rights Reserved.
 
 import React from 'react'
 
-const UserAuthMenu = () => {
+interface UserAuthMenuProps {
+  handleClick: (selectedAuthRoute: string) => void
+}
+
+const UserAuthMenu = ({ handleClick }: UserAuthMenuProps) => {
+  const redirectToSignIn = () => {
+    window.history.pushState({}, '', '/signin')
+    handleClick('signin')
+  }
+
+  const redirectToSignUp = () => {
+    window.history.pushState({}, '', '/signup')
+    handleClick('signup')
+  }
+
   return (
     <div className="userAuthContainer">
       <h1 className="title">{'Welcome to the METAVRSE Engine!'}</h1>
 
       <div className="buttonContainer">
-        <button className="button rounded-md">{'Sign in'}</button>
-        <button className="button rounded-md">{'Sign up'}</button>
+        <button className="button rounded-md" onClick={redirectToSignIn}>
+          {'Sign in'}
+        </button>
+        <button className="button rounded-md" onClick={redirectToSignUp}>
+          {'Sign up'}
+        </button>
       </div>
     </div>
   )
