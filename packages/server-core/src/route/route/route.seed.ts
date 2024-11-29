@@ -42,6 +42,14 @@ export async function seed(knex: Knex): Promise<void> {
       },
       {
         project: 'ir-engine/default-project',
+        route: '/signin'
+      },
+      {
+        project: 'ir-engine/default-project',
+        route: '/signup'
+      },
+      {
+        project: 'ir-engine/default-project',
         route: '/location'
       },
       {
