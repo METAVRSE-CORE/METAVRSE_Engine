@@ -45,10 +45,10 @@ const UserAuthMenu = ({ handleClick }: UserAuthMenuProps) => {
       <h1 className="title">{'Welcome to the METAVRSE Engine!'}</h1>
 
       <div className="buttonContainer">
-        <button className="button rounded-md" onClick={redirectToSignIn}>
+        <button className="w-1/2 rounded-md" onClick={redirectToSignIn}>
           {'Sign in'}
         </button>
-        <button className="button rounded-md" onClick={redirectToSignUp}>
+        <button className="w-1/2 rounded-md" onClick={redirectToSignUp}>
           {'Sign up'}
         </button>
       </div>
