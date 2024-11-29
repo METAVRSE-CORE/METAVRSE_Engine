@@ -36,6 +36,8 @@ import { getState, useMutableState } from '@ir-engine/hyperflux'
 import { UserMenus } from '@ir-engine/client-core/src/user/UserUISystem'
 
 import UserAuthMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserAuthMenu'
+import UserSignInMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserSignInMenu'
+import UserSignUpMenu from '@ir-engine/client-core/src/user/components/UserMenu/menus/UserSignUpMenu'
 import { useFind } from '@ir-engine/common'
 import { clientSettingPath } from '@ir-engine/common/src/schema.type.module'
 import './index.scss'
@@ -61,9 +63,9 @@ export const HomePage = (): any => {
       case '':
         return <UserAuthMenu handleClick={setSelectedAuthRoute} />
       case 'signin':
-        return <>Sign In Selected</>
+        return <UserSignInMenu />
       case 'signup':
-        return <>Sign Up Selected</>
+        return <UserSignUpMenu />
       default:
         return <UserAuthMenu handleClick={setSelectedAuthRoute} />
     }
