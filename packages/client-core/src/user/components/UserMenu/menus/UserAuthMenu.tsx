@@ -23,17 +23,16 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
-import { Button } from '@mui/material'
 import React from 'react'
 
 const UserAuthMenu = () => {
   return (
     <div className="userAuthContainer">
-      <h1 className="title">Welcome to the METAVRSE Engine</h1>
+      <h1 className="title">{'Welcome to the METAVRSE Engine!'}</h1>
 
       <div className="buttonContainer">
-        <Button className="button">Sign in</Button>
-        <Button className="button">Sign up</Button>
+        <button className="button rounded-md">{'Sign in'}</button>
+        <button className="button rounded-md">{'Sign up'}</button>
       </div>
     </div>
   )
