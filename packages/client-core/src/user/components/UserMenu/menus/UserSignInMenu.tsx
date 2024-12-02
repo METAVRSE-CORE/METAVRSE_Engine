@@ -23,13 +23,53 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
+import { validateEmail } from '@ir-engine/common/src/config'
+import multiLogger from '@ir-engine/common/src/logger'
+import { useHookstate } from '@ir-engine/hyperflux'
 import React from 'react'
+import { initialAuthState } from '../../../../common/initialAuthState'
+import { clientContextParams } from '../../../../util/ClientContextState'
+import { AuthService } from '../../../services/AuthService'
 
 interface UserSignInMenuProps {
   handleClick: (selectedAuthRoute: string) => void
 }
 
+const logger = multiLogger.child({ component: 'engine:ecs:ProfileMenu', modifier: clientContextParams })
+
 const UserSignInMenu = ({ handleClick }: UserSignInMenuProps) => {
+  const error = useHookstate(false)
+  const userEmail = useHookstate('')
+  const authState = useHookstate(initialAuthState)
+
+  const handleInputChange = (e) => userEmail.set(e.target.value)
+
+  const validate = () => {
+    if (userEmail.value === '') return false
+    if (validateEmail(userEmail.value.trim()) && authState?.value?.emailMagicLink) {
+      error.set(false)
+      return true
+    } else {
+      error.set(true)
+      return false
+    }
+  }
+
+  const handleLogin = (e: any): any => {
+    e.preventDefault()
+    if (!validate()) return
+    // Get the url without query parameters.
+    const redirectUrl = `https://localhost:3000/dashboard`
+    AuthService.createMagicLink(userEmail.value, authState?.value, 'email', redirectUrl).then(() =>
+      logger.info({
+        event_name: 'connect_email',
+        event_value: e.currentTarget.id
+      })
+    )
+
+    return
+  }
+
   const redirectToSignUp = () => {
     window.history.pushState({}, '', '/signup')
     handleClick('signup')
@@ -50,10 +90,19 @@ const UserSignInMenu = ({ handleClick }: UserSignInMenuProps) => {
       <div className="flex w-full flex-col gap-5">
         <div>
           <label id="email">Email Address</label>
-          <input type="text" name={'email'} id="email" placeholder={'Enter your email'} />
+          <input
+            type="text"
+            name={'email'}
+            onBlur={validate}
+            onChange={handleInputChange}
+            id="email"
+            placeholder={'Enter your email'}
+          />
         </div>
 
-        <button className="button w-full rounded-md">{'Send magic link'}</button>
+        <button className="button w-full rounded-md" onClick={handleLogin}>
+          {'Send magic link'}
+        </button>
       </div>
     </div>
   )
