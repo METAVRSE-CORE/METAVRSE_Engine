@@ -41,7 +41,7 @@ const UserSignUpMenu = ({ handleClick }: UserSignUpMenuProps) => {
         <article>
           <h2 className="title">{'Get Started!'}</h2>
           <p className="subTitle">
-            {`Already have an account with us?`}
+            {`Already have an account with us?`}{' '}
             <a onClick={redirectToSignIn} className="link">
               {'Sign in'}
             </a>
