@@ -25,14 +25,26 @@ Infinite Reality Engine. All Rights Reserved.
 
 import React from 'react'
 
-const UserSignUpMenu = () => {
+interface UserSignUpMenuProps {
+  handleClick: (selectedAuthRoute: string) => void
+}
+
+const UserSignUpMenu = ({ handleClick }: UserSignUpMenuProps) => {
+  const redirectToSignIn = () => {
+    window.history.pushState({}, '', '/signin')
+    handleClick('signin')
+  }
+
   return (
     <div className="userAuthContainer">
       <div className="flex w-full flex-col gap-5">
         <article>
           <h2 className="title">{'Get Started!'}</h2>
           <p className="subTitle">
-            {`Already have an account with us?`} <a className="link">{'Sign in'}</a>
+            {`Already have an account with us?`}
+            <a onClick={redirectToSignIn} className="link">
+              {'Sign in'}
+            </a>
           </p>
         </article>
         <article>
