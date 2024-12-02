@@ -74,7 +74,7 @@ export const HomePage = (): any => {
       case 'signin':
         return <UserSignInMenu handleClick={setSelectedAuthRoute} />
       case 'signup':
-        return <UserSignUpMenu />
+        return <UserSignUpMenu handleClick={setSelectedAuthRoute} />
       default:
         return <UserAuthMenu handleClick={setSelectedAuthRoute} />
     }
