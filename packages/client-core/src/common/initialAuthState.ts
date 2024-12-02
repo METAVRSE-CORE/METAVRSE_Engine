@@ -33,7 +33,7 @@ export const initialAuthState = {
   linkedin: false,
   twitter: false,
   smsMagicLink: false,
-  emailMagicLink: false,
+  emailMagicLink: true,
   didWallet: false
 }
 
