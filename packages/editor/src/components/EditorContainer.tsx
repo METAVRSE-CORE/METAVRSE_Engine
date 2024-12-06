@@ -54,6 +54,7 @@ import 'rc-dock/dist/rc-dock.css'
 import { useTranslation } from 'react-i18next'
 import { IoHelpCircleOutline } from 'react-icons/io5'
 import { onSaveScene, setCurrentEditorScene } from '../functions/sceneFunctions'
+import { AiPanelTab } from '../panels/ai'
 import { AssetsPanelTab } from '../panels/assets'
 import { FilesPanelTab } from '../panels/files'
 import { HierarchyPanelTab } from '../panels/hierarchy'
@@ -103,7 +104,7 @@ const onEditorError = (error) => {
 }
 
 const defaultLayout = (flags: { visualScriptPanelEnabled: boolean }): LayoutData => {
-  const tabs = [ScenePanelTab, FilesPanelTab, AssetsPanelTab]
+  const tabs = [ScenePanelTab, FilesPanelTab, AssetsPanelTab, AiPanelTab]
   flags.visualScriptPanelEnabled && tabs.push(VisualScriptPanelTab)
 
   return {

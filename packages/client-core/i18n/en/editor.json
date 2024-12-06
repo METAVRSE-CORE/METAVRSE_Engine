@@ -1558,7 +1558,8 @@
   },
   "tabs": {
     "scene-assets": "Assets",
-    "project-assets": "Project Assets"
+    "project-assets": "Project Assets",
+    "ai": "AI"
   },
   "generatingThumbnails": {
     "title": "Generating Thumbnails",
