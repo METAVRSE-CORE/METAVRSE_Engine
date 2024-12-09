@@ -1574,5 +1574,14 @@
   "unsupportedFile": {
     "title": "Unsupported File Type!",
     "okay": "Okay"
+  },
+  "ai": {
+    "promptPlaceHolder": "Plase enter your prompt here",
+    "generateButtonText": {
+      "generating": "Generating",
+      "text": "Generate Text",
+      "image": "Generete Image",
+      "audio": "Generate Audio"
+    }
   }
 }

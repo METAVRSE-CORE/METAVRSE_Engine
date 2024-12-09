@@ -23,13 +23,28 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
+import Button from '@ir-engine/ui/src/primitives/tailwind/Button'
 import TextArea from '@ir-engine/ui/src/primitives/tailwind/TextArea'
-import React from 'react'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const AiContent = () => {
+  const { t } = useTranslation()
+  const [prompt, setPrompt] = useState<string>('')
+
   return (
-    <div className="ai-content h-full w-full">
-      <TextArea className="text-white" value={'Abhi'} />
+    <div className="ai-content grid h-full w-full grid-rows-[1fr_auto] gap-2">
+      <TextArea
+        className="ai-prompt-input h-full resize-none text-white"
+        placeholder={t('editor:ai.promptPlaceHolder')}
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+      />
+      <div className="action-buttons mb-1 inline-flex w-full justify-end gap-3">
+        <Button className="generate-text">{t('editor:ai.generateButtonText.text')}</Button>
+        <Button className="generate-image">{t('editor:ai.generateButtonText.image')}</Button>
+        <Button className="generate-audio">{t('editor:ai.generateButtonText.audio')}</Button>
+      </div>
     </div>
   )
 }
