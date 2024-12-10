@@ -27,7 +27,7 @@ import { PanelDragContainer, PanelTitle } from '@ir-engine/ui/src/components/edi
 import { TabData } from 'rc-dock'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { AiContent } from './aicontent'
+import { AiContent } from './AiContent'
 
 const AiPanelTitle = () => {
   const { t } = useTranslation()
