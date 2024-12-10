@@ -59,6 +59,7 @@ import { AssetsPanelTab } from '../panels/assets'
 import { FilesPanelTab } from '../panels/files'
 import { HierarchyPanelTab } from '../panels/hierarchy'
 import { MaterialsPanelTab } from '../panels/materials'
+import { PreviewPanelTab } from '../panels/preview'
 import { PropertiesPanelTab } from '../panels/properties'
 import { ScenePanelTab } from '../panels/scenes'
 import { ViewportPanelTab } from '../panels/viewport'
@@ -131,7 +132,7 @@ const defaultLayout = (flags: { visualScriptPanelEnabled: boolean }): LayoutData
               tabs: [HierarchyPanelTab, MaterialsPanelTab]
             },
             {
-              tabs: [PropertiesPanelTab]
+              tabs: [PropertiesPanelTab, PreviewPanelTab]
             }
           ]
         }
@@ -144,6 +145,7 @@ const EditorContainer = () => {
   const { sceneAssetID, sceneName, projectName, scenePath, uiEnabled } = useMutableState(EditorState)
   const editorUIAddon = useMutableState(UIAddonsState).editor
   const currentLoadedSceneURL = useHookstate(null as string | null)
+  const activeTabId = useHookstate(null as string | null)
 
   /**
    * what is our source of truth for which scene is loaded?
