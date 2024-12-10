@@ -23,27 +23,38 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
+import { useHookstate } from '@ir-engine/hyperflux'
 import Button from '@ir-engine/ui/src/primitives/tailwind/Button'
 import TextArea from '@ir-engine/ui/src/primitives/tailwind/TextArea'
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
+
+const defaultState = {
+  prompt: ''
+}
 
 export const AiContent = () => {
   const { t } = useTranslation()
-  const [prompt, setPrompt] = useState<string>('')
+  const { prompt } = useHookstate(defaultState)
 
   return (
     <div className="ai-content grid h-full w-full grid-rows-[1fr_auto] gap-2">
       <TextArea
         className="ai-prompt-input h-full resize-none text-white"
         placeholder={t('editor:ai.promptPlaceHolder')}
-        value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
+        value={prompt.get()}
+        onChange={(e) => prompt.set(e.target.value)}
       />
       <div className="action-buttons mb-1 inline-flex w-full justify-end gap-3">
-        <Button className="generate-text">{t('editor:ai.generateButtonText.text')}</Button>
-        <Button className="generate-image">{t('editor:ai.generateButtonText.image')}</Button>
-        <Button className="generate-audio">{t('editor:ai.generateButtonText.audio')}</Button>
+        <Button className="generate-text" disabled={!prompt}>
+          {t('editor:ai.generateButtonText.text')}
+        </Button>
+        <Button className="generate-image" disabled={!prompt}>
+          {t('editor:ai.generateButtonText.image')}
+        </Button>
+        <Button className="generate-audio" disabled={!prompt}>
+          {t('editor:ai.generateButtonText.audio')}
+        </Button>
       </div>
     </div>
   )
