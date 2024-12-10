@@ -46,13 +46,13 @@ export const AiContent = () => {
         onChange={(e) => prompt.set(e.target.value)}
       />
       <div className="action-buttons mb-1 inline-flex w-full justify-end gap-3">
-        <Button className="generate-text" disabled={!prompt}>
+        <Button className="generate-text" disabled={!prompt.get()}>
           {t('editor:ai.generateButtonText.text')}
         </Button>
-        <Button className="generate-image" disabled={!prompt}>
+        <Button className="generate-image" disabled={!prompt.get()}>
           {t('editor:ai.generateButtonText.image')}
         </Button>
-        <Button className="generate-audio" disabled={!prompt}>
+        <Button className="generate-audio" disabled={!prompt.get()}>
           {t('editor:ai.generateButtonText.audio')}
         </Button>
       </div>
