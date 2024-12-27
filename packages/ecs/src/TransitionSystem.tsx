@@ -23,21 +23,22 @@ All portions of the code written by the Infinite Reality Engine team are Copyrig
 Infinite Reality Engine. All Rights Reserved.
 */
 
-import { defineState } from '@ir-engine/hyperflux'
+import { TransitionComponent } from './ComponentFunctions'
+import { defineQuery } from './QueryFunctions'
+import { defineSystem } from './SystemFunctions'
+import { AnimationSystemGroup } from './SystemGroups'
 
-import { Timer } from './Timer'
+const transitionQuery = defineQuery([TransitionComponent])
 
-export const ECSState = defineState({
-  name: 'ECSState',
-  initial: {
-    timer: null! as ReturnType<typeof Timer>,
-    periodicUpdateFrequency: 5 * 1000, // every 5 seconds
-    simulationTimestep: 1000 / 60,
-    frameTime: Date.now(),
-    simulationTime: Date.now(),
-    deltaSeconds: 0,
-    maxDeltaSeconds: 0.1,
-    elapsedSeconds: 0,
-    lastSystemExecutionDuration: 0
+export const TransitionSystem = defineSystem({
+  uuid: 'TransitionSystem',
+  execute: () => {
+    const transitionEntities = transitionQuery()
+    for (const entity of transitionEntities) {
+      TransitionComponent.update(entity)
+    }
+  },
+  insert: {
+    before: AnimationSystemGroup
   }
 })
